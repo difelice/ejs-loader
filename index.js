@@ -1,7 +1,14 @@
-var _ = require('lodash');
+var ejs = require('ejs'),
+  uglify = require('uglify-js');
+
 
 module.exports = function (source) {
   this.cacheable && this.cacheable();
-  var template = _.template(source);
-  return 'module.exports = ' + template;
+  var template = ejs.compile(source, {
+    client: true
+  });
+
+  var ast = uglify.parser.parse(template.toString());
+
+  return 'module.exports = ' + uglify.uglify.gen_code(ast, {beautify: true});
 };
