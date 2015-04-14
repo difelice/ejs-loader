@@ -30,6 +30,10 @@ plugins: [
 ]
 ```
 
+## Release History
+* 0.2.1 - Add ability to pass compiller options
+* 0.1.0 - Initial release
+
 ## License
 
 MIT (http://www.opensource.org/licenses/mit-license.php)
