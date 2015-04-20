@@ -45,8 +45,7 @@ module.exports = {
 ```
 is equivalent to
 ``` js
-var template = _.template('template <%= text %>', {variable: 'data'}); // => compilled template
-var string = template({text: 'example'}); // => 'template example'
+var template = _.template('<%= template %>', {variable: 'data'}); 
 ```
 
 ## Release History
