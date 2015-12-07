@@ -30,7 +30,7 @@ plugins: [
 ]
 ```
 
-### Compiller options
+### Compiler options
 Query parameters allows to pass options for template compiller.
 
 Config example:
