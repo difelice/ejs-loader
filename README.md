@@ -20,7 +20,7 @@ var template = require("ejs!./file.ejs");
 template(data) // Pass object with data
 ```
 
-You also should provide a global `_` variable with the lodash/underscore runtime. You can do it with the followinf webpack plugin: https://github.com/webpack/docs/wiki/list-of-plugins#provideplugin
+You also should provide a global `_` variable with the lodash/underscore runtime. You can do it with the following webpack plugin: https://github.com/webpack/docs/wiki/list-of-plugins#provideplugin
 
 ```
 plugins: [
