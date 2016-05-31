@@ -3,15 +3,16 @@ var loaderUtils = require('loader-utils');
 
 module.exports = function(source) {
   this.cacheable && this.cacheable();
-  var options = loaderUtils.parseQuery(this.query);
+  var query = loaderUtils.parseQuery(this.query);
+  var options = this.options.ejsLoader || {};
 
   ['escape', 'interpolate', 'evaluate'].forEach(function(templateSetting) {
-    var setting = options[templateSetting];
+    var setting = query[templateSetting];
     if (_.isString(setting)) {
-      options[templateSetting] = new RegExp(setting, 'g');
+      query[templateSetting] = new RegExp(setting, 'g');
     }
   });
 
-  var template = _.template(source, options);
+  var template = _.template(source, _.extend({}, query, options));
   return 'module.exports = ' + template;
 };
