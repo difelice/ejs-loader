@@ -50,11 +50,19 @@ var template = _.template('<%= template %>', { variable : 'data' });
 
 ``` js
 module.exports = {
-  module: {
-    loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader', query: { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' } },
-    ]
-  }
+    module: {
+        loaders: [
+            {
+                test: /\.ejs$/, 
+                loader: 'ejs-loader', 
+                query: { 
+                    variable: 'data', 
+                    interpolate : '\\{\\{(.+?)\\}\\}', 
+                    evaluate : '\\[\\[(.+?)\\]\\]' 
+                }
+            },
+        ]
+    }
 };
 ```
 is equivalent to
@@ -79,6 +87,7 @@ module.exports = {
 ```
 
 ## Release History
+* 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
 * 0.1.0 - Initial release
 
