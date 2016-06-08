@@ -30,22 +30,52 @@ plugins: [
 ]
 ```
 
-### Compiler options
-Query parameters allows to pass options for template compiller.
+### Options
+[Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding an ```esjLoader``` options block to your configuration.
 
-Config example:
+Config example using a querystring:
 ``` js
 module.exports = {
   module: {
     loaders: [
-      { test: /\.ejs$/, loader: "ejs-loader?variable=data" },
+      { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
     ]
   }
 };
 ```
 is equivalent to
 ``` js
-var template = _.template('<%= template %>', {variable: 'data'}); 
+var template = _.template('<%= template %>', { variable : 'data' });
+```
+
+``` js
+module.exports = {
+  module: {
+    loaders: [
+      { test: /\.ejs$/, loader: 'ejs-loader', query: { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' } },
+    ]
+  }
+};
+```
+is equivalent to
+``` js
+var template = _.template('<%= template %>', { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' });
+```
+
+Config example using the ```ejsLoader``` config block:
+``` js
+module.exports = {
+  module: {
+    loaders: [
+      { test: /\.ejs$/, loader: 'ejs-loader',
+    ]
+  },
+  ejsLoader : {
+    variable    : 'data',
+    interpolate : /\{\{(.+?)\}\}/g,
+    evaluate    : /\[\[(.+?)\]\]/g
+  }
+};
 ```
 
 ## Release History
