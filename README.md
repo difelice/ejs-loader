@@ -86,6 +86,29 @@ module.exports = {
 };
 ```
 
+
+### Including nested templates
+
+Lodash template function does not provide `include` method of [ejs module](http://ejs.co/). To include other templates, passing template functions as parameters does the job. For example:
+
+**index.js:**
+
+    var mainTemplate = require('ejs!./main.ejs');
+    var hyperlinkTemplate = require('ejs!./hyperlink.ejs');
+    var renderedHtml = mainTemplate({ hyperlink: hyperlinkTemplate });
+
+**main.ejs:**
+
+    <h1><%= hyperlink({ name: 'Example', url: 'http://example.com' }) %></h1>
+
+**hyperlink.ejs:**
+
+    <a href="<%= url %>"><%= name %></a>
+
+As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">Example</a></h1>`.
+
+
+
 ## Release History
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
