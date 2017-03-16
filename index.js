@@ -14,5 +14,5 @@ module.exports = function(source) {
   });
 
   var template = _.template(source, _.extend({}, query, options));
-  return 'module.exports = ' + template;
+  return this.version && this.version >= 2 ? `export default ${template};` : `module.exports = ${template};`;
 };
