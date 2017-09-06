@@ -75,7 +75,7 @@ Config example using the ```ejsLoader``` config block:
 module.exports = {
   module: {
     loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader',
+      { test: /\.ejs$/, loader: 'ejs-loader' }
     ]
   },
   ejsLoader : {
