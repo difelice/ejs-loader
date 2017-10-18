@@ -1,18 +1,18 @@
-var _ = require('lodash');
-var loaderUtils = require('loader-utils');
 
-module.exports = function(source) {
+const { isString, template, extend } = require('lodash');
+const { parseQuery } = require('loader-utils');
+
+module.exports = (source) => {
   this.cacheable && this.cacheable();
-  var query = loaderUtils.parseQuery(this.query);
-  var options = this.options.ejsLoader || {};
+  const query = parseQuery(this.query);
+  const options = this.options.ejsLoader || {};
 
-  ['escape', 'interpolate', 'evaluate'].forEach(function(templateSetting) {
-    var setting = query[templateSetting];
-    if (_.isString(setting)) {
+  ['escape', 'interpolate', 'evaluate'].forEach((templateSetting) => {
+    const setting = query[templateSetting];
+    if (isString(setting)) {
       query[templateSetting] = new RegExp(setting, 'g');
     }
   });
 
-  var template = _.template(source, _.extend({}, query, options));
-  return 'module.exports = ' + template;
+  return `module.exports = ${template(source, extend({}, query, options))}`;
 };
