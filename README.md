@@ -10,7 +10,7 @@ If you are looking for the loader which uses [EJS templating engine](https://git
 
 ## Usage
 
-[Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
+[Documentation: Using loaders](https://webpack.js.org/concepts/loaders/)
 
 ``` javascript
 var template = require("./file.ejs");
