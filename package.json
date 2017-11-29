@@ -1,6 +1,6 @@
 {
   "name": "ejs-loader",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "EJS (Underscore/LoDash Templates) loader for webpack",
   "main": "index.js",
   "repository": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/okonet/ejs-loader",
   "dependencies": {
-    "lodash": "^3.6.0",
-    "loader-utils": "^0.2.7"
+    "loader-utils": "^1.1.0",
+    "lodash": "^4.17.4"
   }
 }

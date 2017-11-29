@@ -20,16 +20,6 @@ var template = require("ejs!./file.ejs");
 template(data) // Pass object with data
 ```
 
-You also should provide a global `_` variable with the lodash/underscore runtime. You can do it with the following webpack plugin: https://github.com/webpack/docs/wiki/list-of-plugins#provideplugin
-
-```
-plugins: [
-    new webpack.ProvidePlugin({
-        _: "underscore"
-    })
-]
-```
-
 ### Options
 [Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding an ```esjLoader``` options block to your configuration.
 
@@ -37,8 +27,8 @@ Config example using a querystring:
 ``` js
 module.exports = {
   module: {
-    loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader?variable=data' },
+    rules: [
+      { test: /\.ejs$/, use: [{loader: 'ejs-loader', options: { variable: 'data'}] },
     ]
   }
 };
@@ -51,16 +41,18 @@ var template = _.template('<%= template %>', { variable : 'data' });
 ``` js
 module.exports = {
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.ejs$/, 
-                loader: 'ejs-loader', 
-                query: { 
-                    variable: 'data', 
-                    interpolate : '\\{\\{(.+?)\\}\\}', 
-                    evaluate : '\\[\\[(.+?)\\]\\]' 
-                }
-            },
+                test: /\.ejs$/,
+                use: [{
+                    loader: 'ejs-loader',
+                    options: {
+                        variable: 'data',
+                        interpolate : '\\{\\{(.+?)\\}\\}', 
+                        evaluate : '\\[\\[(.+?)\\]\\]' 
+                    }
+                ]
+            }
         ]
     }
 };
@@ -69,23 +61,6 @@ is equivalent to
 ``` js
 var template = _.template('<%= template %>', { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' });
 ```
-
-Config example using the ```ejsLoader``` config block:
-``` js
-module.exports = {
-  module: {
-    loaders: [
-      { test: /\.ejs$/, loader: 'ejs-loader' }
-    ]
-  },
-  ejsLoader : {
-    variable    : 'data',
-    interpolate : /\{\{(.+?)\}\}/g,
-    evaluate    : /\[\[(.+?)\]\]/g
-  }
-};
-```
-
 
 ### Including nested templates
 
@@ -110,6 +85,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 0.3.1 - Make it Webpack 3.0 compatible and update dependencies
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
 * 0.1.0 - Initial release
