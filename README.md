@@ -13,7 +13,7 @@ If you are looking for the loader which uses [EJS templating engine](https://git
 [Documentation: Using loaders](http://webpack.github.io/docs/using-loaders.html)
 
 ``` javascript
-var template = require("ejs!./file.ejs");
+var template = require("./file.ejs");
 // => returns the template function compiled with undesrcore (lodash) templating engine.
 
 // And then use it somewhere in your code
@@ -85,7 +85,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
-* 0.3.1 - Make it Webpack 3.0 compatible and update dependencies
+* 0.3.1 - Make it compatible with Webpack 3.0 and update dependencies
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
 * 0.1.0 - Initial release
