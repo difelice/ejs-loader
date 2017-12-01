@@ -6,7 +6,7 @@ If you are looking for the loader which uses [EJS templating engine](https://git
 
 ## Installation
 
-`npm install ejs-loader`
+`npm install ejs-loader --save-dev`
 
 ## Usage
 
@@ -20,19 +20,41 @@ var template = require("./file.ejs");
 template(data) // Pass object with data
 ```
 
+You also should provide a global `_` variable with the lodash/underscore runtime. You can do it with the following webpack plugin: https://webpack.js.org/plugins/provide-plugin/
+
+```
+plugins: [
+    new webpack.ProvidePlugin({
+        _: "lodash"
+    })
+]
+```
+
 ### Options
-[Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding an ```esjLoader``` options block to your configuration.
+[Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding or a JSON object to your configuration.
 
 Config example using a querystring:
 ``` js
 module.exports = {
   module: {
     rules: [
-      { test: /\.ejs$/, use: [{loader: 'ejs-loader', options: { variable: 'data'}] },
+      { test: /\.ejs$/, use: [{loader: 'ejs-loader?variable=data'}] },
     ]
   }
 };
 ```
+
+Config example using a JSON object:
+``` js
+module.exports = {
+  module: {
+    rules: [
+      { test: /\.ejs$/, use: [{loader: 'ejs-loader', options: { variable: 'data' }}] },
+    ]
+  }
+};
+```
+
 is equivalent to
 ``` js
 var template = _.template('<%= template %>', { variable : 'data' });
@@ -48,8 +70,8 @@ module.exports = {
                     loader: 'ejs-loader',
                     options: {
                         variable: 'data',
-                        interpolate : '\\{\\{(.+?)\\}\\}', 
-                        evaluate : '\\[\\[(.+?)\\]\\]' 
+                        interpolate : '\\{\\{(.+?)\\}\\}',
+                        evaluate : '\\[\\[(.+?)\\]\\]'
                     }
                 ]
             }
@@ -57,6 +79,7 @@ module.exports = {
     }
 };
 ```
+
 is equivalent to
 ``` js
 var template = _.template('<%= template %>', { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' });
@@ -85,7 +108,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
-* 0.3.1 - Make it compatible with Webpack 3.0 and update dependencies
+* 1.0.0 - Make it compatible with Webpack 3.0 and update dependencies
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
 * 0.1.0 - Initial release
