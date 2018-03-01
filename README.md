@@ -1,5 +1,6 @@
 # ejs-loader for webpack
 
+[![npm](https://img.shields.io/npm/v/ejs-loader.svg)](https://www.npmjs.com/package/ejs-loader)
 [![Build Status](https://travis-ci.org/okonet/ejs-loader.svg)](https://travis-ci.org/okonet/ejs-loader)
 
 EJS (Underscore/LoDash Templates) loader for [webpack](http://webpack.github.io/). Uses [lodash template](http://lodash.com/docs#template) function to compile templates.

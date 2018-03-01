@@ -1,6 +1,6 @@
 {
   "name": "ejs-loader",
-  "version": "0.3.0",
+  "version": "0.0.0-development",
   "description": "EJS (Underscore/LoDash Templates) loader for webpack",
   "main": "index.js",
   "repository": {
@@ -25,5 +25,11 @@
   "dependencies": {
     "lodash": "^3.6.0",
     "loader-utils": "^0.2.7"
+  },
+  "scripts": {
+    "travis-deploy-once": "travis-deploy-once"
+  },
+  "devDependencies": {
+    "travis-deploy-once": "^4.3.4"
   }
 }
