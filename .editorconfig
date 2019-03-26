@@ -1,0 +1,9 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+end_of_line = lf
+
+[*.{js,json,less,py,html,jinja2}]
+indent_size = 2
