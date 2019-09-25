@@ -113,6 +113,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 0.3.5 - Fix dependency vulnerabilities.
 * 0.3.3 - Fix dependency vulnerabilities.
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
 * 0.2.1 - Add ability to pass compiller options
