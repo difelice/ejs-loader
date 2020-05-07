@@ -1,11 +1,11 @@
 {
-  "name": "ejs-loader",
-  "version": "0.3.6",
+  "name": "@groveco/ejs-loader",
+  "version": "1.0.0",
   "description": "EJS (Underscore/LoDash Templates) loader for webpack",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/difelice/ejs-loader.git"
+    "url": "https://github.com/groveco/ejs-loader.git"
   },
   "keywords": [
     "ejs",
@@ -19,9 +19,9 @@
   "author": "Andrey Okonetchnikov <andrey@okonet.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/difelice/ejs-loader/issues"
+    "url": "https://github.com/groveco/ejs-loader/issues"
   },
-  "homepage": "https://github.com/difelice/ejs-loader",
+  "homepage": "https://github.com/groveco/ejs-loader",
   "dependencies": {
     "loader-utils": "^0.2.7",
     "lodash": "^4.17.15"
