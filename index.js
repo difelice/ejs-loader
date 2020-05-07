@@ -21,5 +21,5 @@ module.exports = function(source) {
   });
 
   var template = _.template(source, _.extend({}, query, options));
-  return 'module.exports = ' + template;
+  return 'export default ' + template;
 };
