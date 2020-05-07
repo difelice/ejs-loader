@@ -113,6 +113,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 1.0.0 - Changed export format to ESM
 * 0.3.5 - Fix dependency vulnerabilities.
 * 0.3.3 - Fix dependency vulnerabilities.
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
