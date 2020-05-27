@@ -1,0 +1,33 @@
+version: 2.1
+jobs:
+  node-dependencies:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install dependencies with the current package-lock
+          command: npm ci
+      - save_cache:
+          key: v1-npm-dependencies-{{ checksum "package-lock.json" }}
+          paths:
+            - "node_modules"
+  test:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-npm-dependencies-{{ checksum "package-lock.json" }}
+      - run: npm run test
+workflows:
+  test:
+    jobs:
+      - node-dependencies
+      - test:
+          requires:
+           - node-dependencies
