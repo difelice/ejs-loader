@@ -1,6 +1,6 @@
 {
   "name": "@groveco/ejs-loader",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "EJS (Underscore/LoDash Templates) loader for webpack",
   "main": "index.js",
   "repository": {
@@ -9,6 +9,10 @@
   },
   "keywords": [
     "ejs",
+    "ECMAScript",
+    "modules",
+    "esm",
+    "es modules",
     "underscore",
     "lodash",
     "_",
@@ -17,6 +21,10 @@
     "template"
   ],
   "author": "Andrey Okonetchnikov <andrey@okonet.ru>",
+  "contributors": [
+    "AtofStryker (Bill Glesias <bglesias@grove.co>",
+    "Rob Coleman <rcoleman@grove.co>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/groveco/ejs-loader/issues"
