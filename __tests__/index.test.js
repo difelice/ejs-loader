@@ -15,7 +15,7 @@ const convertTemplateStringToFunction = (templateString) => {
 }
 
 describe('ejsLoader', () => {
-  it('returns template with applied parameters', () => {
+  it('returns template with applied parameters with supplied query variable', () => {
     const template = '<div>Hello <%= args.world %>!</div>';
     const params = { 
       world: 'World'
@@ -27,5 +27,33 @@ describe('ejsLoader', () => {
     };
     const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
     expect(compiled(params)).toBe('<div>Hello World!</div>');
+  });
+
+  it('returns template with applied parameters with supplied variable option', () => {
+    const template = '<div>Hello <%= data.world %>!</div>';
+    const params = { 
+      world: 'World'
+    };
+    const compilerOptions = {
+      // stub out options.ejsloader populated by Webpack
+      options: {
+        ejsLoader: {
+          variable: 'data'
+        }
+      }
+    };
+    const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
+    expect(compiled(params)).toBe('<div>Hello World!</div>');
+  });
+
+  it('throws error when options variable or query variable are undefined', () => {
+    const template = '<div>Hello <%= args.world %>!</div>';
+    expect(() => {
+      compileTemplate(template)
+    }).toThrowError(`
+      To support ES Modules, the 'variable' option must be passed to avoid 'with' statements 
+      in the compiled template to be strict mode compatible. 
+      Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111
+    `);
   });
 });
