@@ -30,7 +30,6 @@
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^25.2.3",
-    "require-from-string": "^2.0.2"
+    "jest": "^25.2.3"
   }
 }
