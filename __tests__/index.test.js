@@ -15,31 +15,15 @@ const convertTemplateStringToFunction = (templateString) => {
 }
 
 describe('ejsLoader', () => {
-  it('returns template with applied parameters with supplied query variable', () => {
-    const template = '<div>Hello <%= args.world %>!</div>';
-    const params = { 
-      world: 'World'
-    };
-    const compilerOptions = {
-      query: {
-        variable: 'args'
-      }
-    };
-    const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
-    expect(compiled(params)).toBe('<div>Hello World!</div>');
-  });
-
   it('returns template with applied parameters with supplied variable option', () => {
     const template = '<div>Hello <%= data.world %>!</div>';
     const params = { 
       world: 'World'
     };
     const compilerOptions = {
-      // stub out options.ejsloader populated by Webpack
-      options: {
-        ejsLoader: {
-          variable: 'data'
-        }
+      // stub out options populated by Webpack and handled internally by loader-utils
+      query: {
+        variable: 'data'
       }
     };
     const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
