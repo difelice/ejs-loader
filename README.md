@@ -36,7 +36,26 @@ plugins: [
 ### Options
 [Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding an ```esjLoader``` options block to your configuration.
 
-Config example using a querystring:
+Config example with Webpack 4+
+``` js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-loader',
+        options: {
+          variable: 'data',
+          interpolate : '\\{\\{(.+?)\\}\\}',
+          evaluate : '\\[\\[(.+?)\\]\\]'
+        }
+      }
+    ]
+  }
+};
+```
+
+Config example using a querystring ([deprecated](https://webpack.js.org/concepts/loaders/#loader-features)):
 ``` js
 module.exports = {
   module: {
@@ -73,7 +92,7 @@ is equivalent to
 var template = _.template('<%= template %>', { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' });
 ```
 
-Config example using the ```ejsLoader``` config block:
+Config example using the ```ejsLoader``` config block ([deprecated](https://webpack.js.org/concepts/loaders/#loader-features)):
 ``` js
 module.exports = {
   module: {
