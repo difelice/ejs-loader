@@ -39,5 +39,18 @@ describe('ejsLoader', function() {
       const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
       expect(compiled(params)).toBe('<div>Hello World!</div>');
     });
+
+    it('throws error when options variable or query variable are undefined', () => {
+      const template = '<div>Hello <%= args.world %>!</div>';
+      const compilerOptions = {
+        query: {
+          exportAsESM: true
+        }
+      };
+      
+      expect(() => {
+        compileTemplate(template, compilerOptions)
+      }).toThrowError();
+    });
   })
 });
