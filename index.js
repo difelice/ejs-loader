@@ -13,5 +13,5 @@ module.exports = function(source) {
   });
 
   var template = _.template(source, _.extend({}, options));
-  return 'module.exports = ' + template;
+  return options.exportAsESM ? `export default ${template}` : `module.exports = ${template}`;
 };
