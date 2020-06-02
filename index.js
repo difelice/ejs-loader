@@ -3,26 +3,26 @@ var lodashExtend = require('lodash/extend');
 var lodashIsString = require('lodash/isString');
 var loaderUtils = require('loader-utils');
 
-function getOptions(context) {
-  if (context.options && context.options.ejsLoader) {
-    return context.options.ejsLoader;
-  }
-  return {};
-}
-
 module.exports = function(source) {
   this.cacheable && this.cacheable();
-  var query = loaderUtils.parseQuery(this.query);
-  var options = getOptions(this);
+  var options = loaderUtils.getOptions(this);
+
+  if(options.exportAsESM && !options.variable){
+    throw new Error(`
+      To support ES Modules, the 'variable' option must be passed to avoid 'with' statements 
+      in the compiled template to be strict mode compatible. 
+      Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111
+    `)
+  }
 
   ['escape', 'interpolate', 'evaluate'].forEach(function(templateSetting) {
-    var setting = query[templateSetting];
+    var setting = options[templateSetting];
     if (lodashIsString(setting)) {
-      query[templateSetting] = new RegExp(setting, 'g');
+      options[templateSetting] = new RegExp(setting, 'g');
     }
   });
 
-  var template = lodashTemplate(source, lodashExtend({}, query, options));
-
-  return 'module.exports = ' + template;
+  var template = lodashTemplate(source, lodashExtend({}, options));
+  return options.exportAsESM ? `export default ${template}` : `module.exports = ${template}`;
 };
+

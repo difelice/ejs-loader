@@ -36,7 +36,26 @@ plugins: [
 ### Options
 [Underscore](http://underscorejs.org/#template)/[Lodash](https://lodash.com/docs#template) options can be passed in using the querystring or adding an ```esjLoader``` options block to your configuration.
 
-Config example using a querystring:
+Config example with Webpack 4+
+``` js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-loader',
+        options: {
+          variable: 'data',
+          interpolate : '\\{\\{(.+?)\\}\\}',
+          evaluate : '\\[\\[(.+?)\\]\\]'
+        }
+      }
+    ]
+  }
+};
+```
+
+Config example using a querystring ([deprecated](https://webpack.js.org/concepts/loaders/#loader-features)):
 ``` js
 module.exports = {
   module: {
@@ -73,7 +92,7 @@ is equivalent to
 var template = _.template('<%= template %>', { variable: 'data', interpolate : '\\{\\{(.+?)\\}\\}', evaluate : '\\[\\[(.+?)\\]\\]' });
 ```
 
-Config example using the ```ejsLoader``` config block:
+Config example using the ```ejsLoader``` config block ([deprecated](https://webpack.js.org/concepts/loaders/#loader-features)):
 ``` js
 module.exports = {
   module: {
@@ -88,6 +107,30 @@ module.exports = {
   }
 };
 ```
+
+#### Export as ES Module
+ECMAScript Module mode can be utilized to leverage Webpack 4's code splitting/lazy loading and to gain the benefits of tree shaking. This can be used by setting
+`exportAsESM` to `true` in the loader options.
+
+Config example with Webpack 4+
+``` js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-loader',
+        options: {
+          variable: 'data',
+          exportAsESM: true
+        }
+      }
+    ]
+  }
+};
+```
+
+The variable option is `required` to compile EJS templates into ES compatible modules. If the `variable` option is not provided as a loader or `query` [option](https://webpack.js.org/concepts/loaders/#loader-features), an `Error` will be thrown throw. Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111 for additional details.
 
 
 ### Including nested templates
