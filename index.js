@@ -1,5 +1,5 @@
 var lodashTemplate = require('lodash/template');
-var lodahExtend = require('lodash/extend');
+var lodashExtend = require('lodash/extend');
 var lodashIsString = require('lodash/isString');
 var loaderUtils = require('loader-utils');
 
@@ -22,7 +22,7 @@ module.exports = function(source) {
     }
   });
 
-  var template = lodashTemplate(source, lodahExtend({}, query, options));
+  var template = lodashTemplate(source, lodashExtend({}, query, options));
 
   return 'module.exports = ' + template;
 };
