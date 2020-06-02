@@ -5,7 +5,7 @@ var loaderUtils = require('loader-utils');
 
 module.exports = function (source) {
   this.cacheable && this.cacheable();
-  var options = loaderUtils.getOptions(this);
+  var options = loaderUtils.getOptions(this) || {};
 
   if (options.exportAsESM && !options.variable) {
     throw new Error(`
