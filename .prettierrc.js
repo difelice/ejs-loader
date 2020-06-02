@@ -1,5 +1,5 @@
 module.exports = {
-    parser: 'babylon',
+    parser: 'babel',
     printWidth: 80,
     semi: true,
     singleQuote: true,
