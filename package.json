@@ -1,6 +1,6 @@
 {
   "name": "ejs-loader",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "EJS (Underscore/LoDash Templates) loader for webpack",
   "main": "index.js",
   "repository": {

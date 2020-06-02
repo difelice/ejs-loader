@@ -1,4 +1,6 @@
-var _ = require('lodash');
+var lodashTemplate = require('lodash/template');
+var lodashExtend = require('lodash/extend');
+var lodashIsString = require('lodash/isString');
 var loaderUtils = require('loader-utils');
 
 module.exports = function(source) {
@@ -15,11 +17,12 @@ module.exports = function(source) {
 
   ['escape', 'interpolate', 'evaluate'].forEach(function(templateSetting) {
     var setting = options[templateSetting];
-    if (_.isString(setting)) {
+    if (lodashIsString(setting)) {
       options[templateSetting] = new RegExp(setting, 'g');
     }
   });
 
-  var template = _.template(source, _.extend({}, options));
+  var template = lodashTemplate(source, lodashExtend({}, options));
   return options.exportAsESM ? `export default ${template}` : `module.exports = ${template}`;
 };
+
