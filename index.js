@@ -6,12 +6,13 @@ var loaderUtils = require('loader-utils');
 module.exports = function (source) {
   this.cacheable && this.cacheable();
   var options = loaderUtils.getOptions(this) || {};
+  var useESModule = options.esModule !== false;
 
-  if (options.esModule && !options.variable) {
+  if (useESModule && !options.variable) {
     throw new Error(`
       To support the 'esModule' option, the 'variable' option must be passed to avoid 'with' statements
-      in the compiled template to be strict mode compatible.
-      Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111
+      in the compiled template to be strict mode compatible. Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111.
+      To enable CommonJS, please set the 'esModule' option to false.
     `);
   }
 
@@ -23,7 +24,7 @@ module.exports = function (source) {
   });
 
   var template = lodashTemplate(source, lodashExtend({}, options));
-  return options.esModule
+  return useESModule
     ? `export default ${template}`
     : `module.exports = ${template}`;
 };
