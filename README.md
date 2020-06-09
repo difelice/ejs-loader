@@ -156,6 +156,8 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 0.4.1 - Add default object for options to prevent breakages when the webpack query object is null 
+* 0.4.0 - Add support for ESModules with the `exportAsESM` flag
 * 0.3.5 - Fix dependency vulnerabilities.
 * 0.3.3 - Fix dependency vulnerabilities.
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
