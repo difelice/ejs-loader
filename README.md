@@ -110,7 +110,7 @@ module.exports = {
 
 #### Export as ES Module
 ECMAScript Module mode can be utilized to leverage Webpack 4's code splitting/lazy loading and to gain the benefits of tree shaking. This can be used by setting
-`exportAsESM` to `true` in the loader options.
+`esModule` to `true` in the loader options.
 
 Config example with Webpack 4+
 ``` js
@@ -122,7 +122,7 @@ module.exports = {
         loader: 'ejs-loader',
         options: {
           variable: 'data',
-          exportAsESM: true
+          esModule: true
         }
       }
     ]

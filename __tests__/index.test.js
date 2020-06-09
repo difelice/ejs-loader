@@ -10,7 +10,7 @@ describe('ejsLoader', () => {
     expect(compiled(params)).toBe('<div>Hello World!</div>');
   });
 
-  describe('ejsLoader with ESModules feature', () => {
+  describe('ejsLoader with "ESModule" feature', () => {
     const compileTemplate = (template, mockedLoaderContext = {}) => {
       const mergedMockedLoaderContext = {
         cacheable: null,
@@ -33,7 +33,7 @@ describe('ejsLoader', () => {
       const compilerOptions = {
         query: {
           variable: 'args',
-          exportAsESM: true
+          esModule: true
         }
       };
       const compiled = convertTemplateStringToFunction(compileTemplate(template, compilerOptions));
@@ -44,7 +44,7 @@ describe('ejsLoader', () => {
       const template = '<div>Hello <%= args.world %>!</div>';
       const compilerOptions = {
         query: {
-          exportAsESM: true
+          esModule: true
         }
       };
       

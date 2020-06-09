@@ -7,9 +7,9 @@ module.exports = function (source) {
   this.cacheable && this.cacheable();
   var options = loaderUtils.getOptions(this) || {};
 
-  if (options.exportAsESM && !options.variable) {
+  if (options.esModule && !options.variable) {
     throw new Error(`
-      To support ES Modules, the 'variable' option must be passed to avoid 'with' statements
+      To support the 'esModule' option, the 'variable' option must be passed to avoid 'with' statements
       in the compiled template to be strict mode compatible.
       Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111
     `);
@@ -23,7 +23,7 @@ module.exports = function (source) {
   });
 
   var template = lodashTemplate(source, lodashExtend({}, options));
-  return options.exportAsESM
+  return options.esModule
     ? `export default ${template}`
     : `module.exports = ${template}`;
 };
