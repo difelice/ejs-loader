@@ -156,6 +156,7 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 0.5.0 - Changed `exportAsESM` flag to `esModule` and enabled this behavior by default to be consistent with other webpack loaders.
 * 0.4.1 - Add default object for options to prevent breakages when the webpack query object is null 
 * 0.4.0 - Add support for ESModules with the `exportAsESM` flag
 * 0.3.5 - Fix dependency vulnerabilities.
