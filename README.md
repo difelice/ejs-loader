@@ -108,9 +108,10 @@ module.exports = {
 };
 ```
 
-#### Export as ES Module
-ECMAScript Module mode can be utilized to leverage Webpack 4's code splitting/lazy loading and to gain the benefits of tree shaking. This can be used by setting
-`exportAsESM` to `true` in the loader options.
+#### Export as CommonJS
+By default, `ejs-loader` generates JS modules that use the ES modules syntax. There are some cases in which using ES modules is beneficial, like in the case of [module concatenation](https://webpack.js.org/plugins/module-concatenation-plugin/) and [tree shaking](https://webpack.js.org/guides/tree-shaking/).
+
+You can enable a CommonJS module syntax using:
 
 Config example with Webpack 4+
 ``` js
@@ -121,8 +122,7 @@ module.exports = {
         test: /\.ejs$/,
         loader: 'ejs-loader',
         options: {
-          variable: 'data',
-          exportAsESM: true
+          esModule: false
         }
       }
     ]
@@ -156,6 +156,9 @@ As a result, `renderedHtml` becomes a string `<h1><a href="http://example.com">E
 
 
 ## Release History
+* 0.5.0 - Changed `exportAsESM` flag to `esModule` and enabled this behavior by default to be consistent with other webpack loaders.
+* 0.4.1 - Add default object for options to prevent breakages when the webpack query object is null 
+* 0.4.0 - Add support for ESModules with the `exportAsESM` flag
 * 0.3.5 - Fix dependency vulnerabilities.
 * 0.3.3 - Fix dependency vulnerabilities.
 * 0.3.0 - Allow passing template options via `ejsLoader` or via loader's `query`
