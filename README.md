@@ -130,7 +130,7 @@ module.exports = {
 };
 ```
 
-The variable option is `required` to compile EJS templates into ES compatible modules. If the `variable` option is not provided as a loader or `query` [option](https://webpack.js.org/concepts/loaders/#loader-features), an `Error` will be thrown throw. Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111 for additional details.
+The variable option is `required` to compile EJS templates into ES compatible modules. If the `variable` option is not provided as a loader or `query` [option](https://webpack.js.org/concepts/loaders/#loader-features), an `Error` will be thrown. Please see https://github.com/lodash/lodash/issues/3709#issuecomment-375898111 for additional details.
 
 
 ### Including nested templates
