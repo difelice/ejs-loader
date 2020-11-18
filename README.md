@@ -17,7 +17,7 @@ If you are looking for the loader which uses [EJS templating engine](https://git
 
 ``` javascript
 var template = require("ejs!./file.ejs");
-// => returns the template function compiled with undesrcore (lodash) templating engine.
+// => returns the template function compiled with underscore (lodash) templating engine.
 
 // And then use it somewhere in your code
 template(data) // Pass object with data
