@@ -1,3 +1,5 @@
+# Deprecated
+Please use new Webpack 5 compatible loader: https://github.com/dc7290/template-ejs-loader
 # ejs-loader for webpack
 
 [![npm](https://img.shields.io/npm/v/ejs-loader.svg)](https://www.npmjs.com/package/ejs-loader)
